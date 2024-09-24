@@ -1,8 +1,11 @@
 import React from 'react'
-import Navbar from '../Component/Navbar/Navbar'
+import ProductList from './ProductList'
 
 const Home = () => {
-  return <Navbar />
+  return <>
+    <br/><br/><br/><br/>
+    <ProductList />
+  </>
 }
 
 export default Home
