@@ -7,7 +7,7 @@ Base app: https://glamour-c4275.web.app/
 Remote app: https://glamourcart.web.app/assets/cartcomponents.js
 
 # Demo
-<iframe src="https://drive.google.com/file/d/1MslHQYTLgTYvcmNE9DdVQIuPeCecaeFf/preview" width="640" height="480"></iframe>
+[View demo video](https://drive.google.com/uc?export=download&id=1MslHQYTLgTYvcmNE9DdVQIuPeCecaeFf)
 
 # Features
 - Searchbar
