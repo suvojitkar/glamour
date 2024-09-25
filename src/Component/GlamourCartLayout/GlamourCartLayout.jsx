@@ -6,7 +6,8 @@ import { CartContext } from "../../Reducers/CartProvider";
 const GlamourCartLayout = (props) => {
   const state = useContext(CartContext);
   const {style={width:'100%'}, label="Add to cart", icon="", size="small", variant="contained", productData} = props;
-  const [qty, setQty] = useState(0);
+  const qtyFromState = state?.state?.filter(data => data.id === productData.id)[0]?.qty || 0;
+  const [qty, setQty] = useState(qtyFromState);
   const onClickHandler = (e, action="inc") => {
     e.stopPropagation();
     if(action === "inc") {

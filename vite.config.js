@@ -10,7 +10,8 @@ export default defineConfig({
       name: 'hostapp',
       filename: 'hostapp.js',
       remotes: {
-        sharedComp: "http://localhost:5174/assets/cartcomponents.js",
+        sharedComp: "https://glamourcart.web.app/assets/cartcomponents.js",
+        // sharedComp: "http://localhost:5174/assets/cartcomponents.js",
       },
       shared: ['react', 'react-dom', 'react-router-dom'],
     }),
