@@ -14,6 +14,7 @@ const ProductList = () => {
     const ProductList = () => {
         const { apiResp } = useFetch({ url: "https://dummyjson.com/products" });
         const products = apiResp?.products;
+
         if (products?.length) {
             return <CardLayout>{products.map((productData) => {
                 return <GlamourCard key={productData.id} productData={productData} onClick={() => redirectToProductDetails(productData.id)}>

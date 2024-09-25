@@ -1,4 +1,4 @@
-import {useRef, useState} from 'react'
+import {useContext, useRef, useState} from 'react'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,15 +16,19 @@ import LoginIcon from '@mui/icons-material/Login';
 import useFetch from '../../Hooks/useFetch';
 import MenuList from '../MenuList/MenuList';
 import useDebounce from '../../Hooks/useDebounce';
+import { CartContext } from '../../Reducers/CartProvider';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Navbar = (props) => {
+    const navigate = useNavigate();
+    const state = useContext(CartContext);
     const searchRef = useRef("");
     const [blur, setBlur] = useState(false);
     const [inputVal, setInputVal] = useState("");
     const [searchText] = useDebounce(inputVal);
-    const searchResp = useFetch({url: `https://dummyjson.com/products/search?q=${searchText}`});
+    const {apiResp} = useFetch({url: `https://dummyjson.com/products/search?q=${searchText}`});
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -48,6 +52,10 @@ const Navbar = (props) => {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
+
+    const goToCart = () => {
+        navigate(`/cart`);
+      }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -94,8 +102,8 @@ const Navbar = (props) => {
                     aria-label="cart badge"
                     color="inherit"
                 >
-                    <Badge badgeContent={17} color="error">
-                        <ShoppingCartIcon />
+                    <Badge badgeContent={state.state.length} color="error" onClick={goToCart}>
+                        <ShoppingCartIcon/>
                     </Badge>
                 </IconButton>
                 <p>cart</p>
@@ -127,6 +135,10 @@ const Navbar = (props) => {
         setBlur(false);
     }
 
+    const navigateTohome = () => {
+        navigate(`/`);
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="fixed">
@@ -137,7 +149,7 @@ const Navbar = (props) => {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                     >
-                        Glamour
+                    <div onClick={navigateTohome} style={{cursor: "pointer"}}> Glamour </div> 
                     </Typography>
 
                     <Search>
@@ -153,7 +165,7 @@ const Navbar = (props) => {
                         />
                     </Search>
 
-                    <MenuList searchResult={searchResp?.apiResp?.products} isBlur={blur} searchText={searchText}/>
+                    <MenuList searchResult={apiResp?.products} isBlur={blur} searchText={searchText}/>
 
                     <Box sx={{ flexGrow: 1 }} />
 
@@ -162,10 +174,12 @@ const Navbar = (props) => {
                             size="large"
                             aria-label="cart badge"
                             color="inherit"
-                        >
-                            <Badge badgeContent={17} color="error">
-                                <ShoppingCartIcon />
+                        >   
+                        <div onClick={goToCart}>
+                            <Badge badgeContent={state.state.length} color="error">
+                                <ShoppingCartIcon/>
                             </Badge>
+                        </div>
                         </IconButton>
 
                         <IconButton

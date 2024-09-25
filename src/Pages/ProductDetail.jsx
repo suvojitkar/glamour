@@ -1,27 +1,27 @@
 import styled from '@emotion/styled';
 import { useParams } from "react-router-dom";
-import useFetch from "../../Hooks/useFetch";
 import { useEffect, useState } from "react";
-import AddCart from '../../AppComponents/AddCart/AddCart';
+import useFetch from '../Hooks/useFetch';
+import GlamourCartLayout from '../Component/GlamourCartLayout/GlamourCartLayout';
 
 const ProductDetail = () => {
     const { id } = useParams();
-    const { resp } = useFetch({url: `https://dummyjson.com/products/${id}`});
+    const { apiResp } = useFetch({url: `https://dummyjson.com/products/${id}`});
     const [details, setDetails] = useState({});
     
     useEffect(() => {
-        if(Object.keys(resp)?.length) {
-            setDetails(resp);
+        if(Object.keys(apiResp)?.length) {
+            setDetails(apiResp);
         }
-    }, [resp]);
+    }, [apiResp]);
 
     const ProductDetailWidget = () => {
         return <ProductDetailLayout>
-            <img src={resp.images[0]} height="500px" width="500px"/>
+            <img src={apiResp.images[0]} height="500px" width="500px"/>
             <div>
-                <h1> {resp.title} </h1> <br/>
-                <ProductDescription> {resp.description} </ProductDescription> <br/>
-                <AddCart />
+                <h1> {apiResp.title} </h1> <br/>
+                <ProductDescription> {apiResp.description} </ProductDescription> <br/>
+                {/* <GlamourCartLayout /> */}
             </div>
         </ProductDetailLayout>
     }
@@ -34,6 +34,7 @@ const ProductDetail = () => {
 }
 
 const ProductDetailLayout = styled.div `
+    margin-top: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
