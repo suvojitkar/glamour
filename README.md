@@ -22,6 +22,8 @@ Remote app: https://glamourcart.web.app/assets/cartcomponents.js
 - debounce
 - code splitting
 - custom hooks
+- React redux
+- module federation
 
 # Hoisting
 Firebase
