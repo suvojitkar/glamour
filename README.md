@@ -3,7 +3,11 @@
 
 # Demo link:
 Base app: https://glamour-c4275.web.app/
+
 Remote app: https://glamourcart.web.app/assets/cartcomponents.js
+
+# Demo
+<iframe src="https://drive.google.com/file/d/1MslHQYTLgTYvcmNE9DdVQIuPeCecaeFf/preview" width="640" height="480"></iframe>
 
 # Features
 - Searchbar
